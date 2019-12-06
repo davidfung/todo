@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
       title: 'Amazing Todo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        textTheme: TextTheme(body1: TextStyle(fontSize: 20.0)),
       ),
       home: HomePage(),
     );
@@ -40,13 +41,67 @@ class TaskView extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(8),
       children: <Widget>[
-        ListTile(title: Text('Entry A')),
-        ListTile(title: Text('Entry B')),
-        ListTile(title: Text('Entry C')),
-        ListTile(title: Text('Entry D')),
-        ListTile(title: Text('Entry E')),
-        ListTile(title: Text('Entry F')),
+        TaskItem(name: 'Entry A'),
+        TaskItem(name: 'Entry B'),
+        TaskItem(name: 'Entry C'),
+        TaskItem(name: 'Entry D'),
+        TaskItem(name: 'Entry E'),
+        TaskItem(name: 'Entry F'),
+        TaskItem(name: 'Entry G'),
+        TaskItem(name: 'Entry H'),
+        TaskItem(name: 'Entry I'),
+        TaskItem(name: 'Entry J'),
+        TaskItem(name: 'Entry K'),
+        TaskItem(name: 'Entry L'),
+        TaskItem(name: 'Entry M'),
+        TaskItem(name: 'Entry N'),
+        TaskItem(name: 'Entry O'),
+        TaskItem(name: 'Entry P'),
+        TaskItem(name: 'Entry Q'),
+        TaskItem(name: 'Entry R'),
+        TaskItem(name: 'Entry S'),
+        TaskItem(name: 'Entry T'),
+        TaskItem(name: 'Entry U'),
+        TaskItem(name: 'Entry V'),
+        TaskItem(name: 'Entry W'),
+        TaskItem(name: 'Entry X'),
+        TaskItem(name: 'Entry Y'),
+        TaskItem(name: 'Entry Z'),
       ],
+    );
+  }
+}
+
+class TaskTile extends StatelessWidget {
+  final String name;
+
+  const TaskTile({
+    this.name,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(this.name),
+      contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
+    );
+  }
+}
+
+class TaskItem extends StatelessWidget {
+  final String name;
+
+  const TaskItem({
+    this.name,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+      child: Text(
+        this.name,
+      ),
     );
   }
 }
