@@ -48,7 +48,18 @@ class _TaskViewState extends State<TaskView> {
     return ListView.builder(
       itemCount: items.length,
       itemBuilder: (context, index) {
-        return ListTile(title: Text('${items[index]}'));
+        final item = items[index];
+        return Dismissible(
+            key: Key(item),
+            onDismissed: (direction) {
+              setState(() {
+                items.removeAt(index);
+              });
+              Scaffold.of(context)
+                  .showSnackBar(SnackBar(content: Text("$item dismissed")));
+            },
+            background: Container(color: Colors.red),
+            child: ListTile(title: Text('${items[index]}')));
       },
     );
   }
