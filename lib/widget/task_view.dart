@@ -17,16 +17,17 @@ class _TaskViewState extends State<TaskView> {
       itemBuilder: (context, index) {
         final taskName = tasks[index].name;
         return Dismissible(
-            key: Key(taskName),
-            onDismissed: (direction) {
-              setState(() {
-                tasks.removeAt(index);
-              });
-              Scaffold.of(context)
-                  .showSnackBar(SnackBar(content: Text("$taskName dismissed")));
-            },
-            background: Container(color: Colors.red),
-            child: ListTile(title: Text('$taskName')));
+          key: UniqueKey(),
+          onDismissed: (direction) {
+            setState(() {
+              tasks.removeAt(index);
+            });
+            Scaffold.of(context)
+                .showSnackBar(SnackBar(content: Text("$taskName dismissed")));
+          },
+          background: Container(color: Colors.red),
+          child: ListTile(title: Text('$taskName')),
+        );
       },
     );
   }
