@@ -19,7 +19,11 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           textTheme: TextTheme(body1: TextStyle(fontSize: 20.0)),
         ),
-        home: HomePage(),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => HomePage(),
+          '/addtask': (context) => AddTaskScreen(),
+        },
       ),
     );
   }
@@ -34,9 +38,30 @@ class HomePage extends StatelessWidget {
       ),
       body: TaskView(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, '/addtask');
+        },
         tooltip: 'Add',
         child: Icon(Icons.add),
+      ),
+    );
+  }
+}
+
+class AddTaskScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Add Item"),
+      ),
+      body: Center(
+        child: RaisedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('Add'),
+        ),
       ),
     );
   }
