@@ -16,8 +16,8 @@ class Tasks with ChangeNotifier {
     return [..._items];
   }
 
-  void addTask() {
-    //_items.add(value);
+  void addTask(Task task) {
+    _items.add(task);
     notifyListeners();
   }
 }
