@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import './model/task.dart';
+import './page/addtask_page.dart';
 import './provider/tasks.dart';
 import './widget/task_view.dart';
 
@@ -40,7 +41,7 @@ class HomePage extends StatelessWidget {
       body: TaskView(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _gotoAddTask(context);
+          _gotoAddTaskPage(context);
           print("hahaha");
         },
         tooltip: 'Add',
@@ -49,30 +50,11 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  void _gotoAddTask(BuildContext context) async {
-    //final String result = await Navigator.pushNamed(context, '/addtask');
-    final String result = await Navigator.push(
-        context, MaterialPageRoute(builder: (context) => AddTaskPage()));
+  void _gotoAddTaskPage(BuildContext context) async {
+    final dynamic result = await Navigator.pushNamed(context, '/addtask');
+//    final String result = await Navigator.push(
+//        context, MaterialPageRoute(builder: (context) => AddTaskPage()));
     print(result);
     Provider.of<Tasks>(context).addTask(Task(name: result));
-  }
-}
-
-class AddTaskPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Add Item"),
-      ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            Navigator.pop(context, "Buy eggs");
-          },
-          child: Text('Add'),
-        ),
-      ),
-    );
   }
 }

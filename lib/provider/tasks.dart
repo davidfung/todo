@@ -7,7 +7,7 @@ class Tasks with ChangeNotifier {
 
   @override
   Tasks() {
-    for (int i = 65; i <= 90; i++) {
+    for (int i = 65; i <= 70; i++) {
       _items.add(Task(name: "Entry ${String.fromCharCode(i)}"));
     }
   }
