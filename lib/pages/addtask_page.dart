@@ -3,16 +3,27 @@ import 'package:flutter/material.dart';
 class AddTaskPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    String _title;
     return Scaffold(
       appBar: AppBar(
         title: Text("Add Item"),
       ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            Navigator.pop(context, "Buy eggs");
-          },
-          child: Text('Add'),
+      body: Container(
+        child: Column(
+          children: <Widget>[
+            TextField(
+              autofocus: true,
+              onChanged: (title) {
+                _title = title;
+              },
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.pop(context, _title?.trim());
+              },
+              child: Text('Add'),
+            ),
+          ],
         ),
       ),
     );
