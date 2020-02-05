@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import './widgets/task_view.dart';
 import './models/task.dart';
 import './pages/addtask_page.dart';
-import './providers/tasks.dart';
+import './providers/tasks_provider.dart';
 
 const APP_TITLE = 'Amazing Todo';
 
@@ -42,7 +42,6 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _gotoAddTaskPage(context);
-          print("hahaha");
         },
         tooltip: 'Add',
         child: Icon(Icons.add),
