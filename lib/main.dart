@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import './model/task.dart';
-import './page/addtask_page.dart';
-import './provider/tasks.dart';
-import './widget/task_view.dart';
+import './widgets/task_view.dart';
+import './models/task.dart';
+import './pages/addtask_page.dart';
+import './providers/tasks.dart';
 
 const APP_TITLE = 'Amazing Todo';
 
@@ -52,8 +52,6 @@ class HomePage extends StatelessWidget {
 
   void _gotoAddTaskPage(BuildContext context) async {
     final dynamic result = await Navigator.pushNamed(context, '/addtask');
-//    final String result = await Navigator.push(
-//        context, MaterialPageRoute(builder: (context) => AddTaskPage()));
     print(result);
     Provider.of<Tasks>(context).addTask(Task(name: result));
   }

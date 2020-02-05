@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../provider/tasks.dart';
+import '../providers/tasks.dart';
 
 class TaskView extends StatefulWidget {
   @override
