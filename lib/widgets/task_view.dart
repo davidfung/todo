@@ -20,8 +20,11 @@ class _TaskViewState extends State<TaskView> {
           key: UniqueKey(),
           onDismissed: (direction) {
             tasks.removeTask(index);
-            Scaffold.of(context)
-                .showSnackBar(SnackBar(content: Text("$taskName dismissed")));
+            Scaffold.of(context).removeCurrentSnackBar();
+            Scaffold.of(context).showSnackBar(SnackBar(
+              content: Text("$taskName dismissed"),
+              duration: Duration(seconds: 1),
+            ));
           },
           background: Container(color: Colors.red),
           child: ListTile(title: Text('$taskName')),
