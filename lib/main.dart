@@ -52,6 +52,8 @@ class HomePage extends StatelessWidget {
   void _gotoAddTaskPage(BuildContext context) async {
     final dynamic result = await Navigator.pushNamed(context, '/addtask');
     print(result);
-    Provider.of<Tasks>(context).addTask(Task(name: result));
+    if (result != null) {
+      Provider.of<Tasks>(context).addTask(Task(name: result));
+    }
   }
 }
