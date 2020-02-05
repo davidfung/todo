@@ -20,4 +20,9 @@ class Tasks with ChangeNotifier {
     _items.add(task);
     notifyListeners();
   }
+
+  void removeTask(int index) {
+    _items.removeAt(index);
+    notifyListeners();
+  }
 }

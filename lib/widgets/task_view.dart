@@ -11,17 +11,15 @@ class TaskView extends StatefulWidget {
 class _TaskViewState extends State<TaskView> {
   @override
   Widget build(BuildContext context) {
-    final tasks = Provider.of<Tasks>(context).items;
+    final tasks = Provider.of<Tasks>(context);
     return ListView.builder(
-      itemCount: tasks.length,
+      itemCount: tasks.items.length,
       itemBuilder: (context, index) {
-        final taskName = tasks[index].name;
+        final taskName = tasks.items[index].name;
         return Dismissible(
           key: UniqueKey(),
           onDismissed: (direction) {
-            setState(() {
-              tasks.removeAt(index);
-            });
+            tasks.removeTask(index);
             Scaffold.of(context)
                 .showSnackBar(SnackBar(content: Text("$taskName dismissed")));
           },
