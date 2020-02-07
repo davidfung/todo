@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 
 import '../models/task.dart';
@@ -12,8 +14,11 @@ class Tasks with ChangeNotifier {
     }
   }
 
+//  List<Task> get items {
+//    return [..._items];
+//  }
   List<Task> get items {
-    return [..._items];
+    return UnmodifiableListView<Task>(_items);
   }
 
   void addTask(Task task) {

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 
-import './widgets/task_view.dart';
-import './models/task.dart';
 import './pages/addtask_page.dart';
 import './providers/tasks_provider.dart';
+import './widgets/task_view.dart';
 
 const APP_TITLE = 'Amazing Todo';
 
@@ -41,19 +41,11 @@ class HomePage extends StatelessWidget {
       body: TaskView(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _gotoAddTaskPage(context);
+          Navigator.pushNamed(context, '/addtask');
         },
         tooltip: 'Add',
         child: Icon(Icons.add),
       ),
     );
-  }
-
-  void _gotoAddTaskPage(BuildContext context) async {
-    final dynamic result = await Navigator.pushNamed(context, '/addtask');
-    print(result);
-    if (result != null && result.length > 0) {
-      Provider.of<Tasks>(context).addTask(Task(name: result));
-    }
   }
 }

@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:provider/provider.dart';
+
+import 'package:todo/models/task.dart';
+import 'package:todo/providers/tasks_provider.dart';
+
 class AddTaskPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -18,10 +23,11 @@ class AddTaskPage extends StatelessWidget {
               },
             ),
             RaisedButton(
-              onPressed: () {
-                Navigator.pop(context, _title?.trim());
-              },
               child: Text('Add'),
+              onPressed: () {
+                Provider.of<Tasks>(context).addTask(Task(name: _title.trim()));
+                Navigator.pop(context);
+              },
             ),
           ],
         ),
