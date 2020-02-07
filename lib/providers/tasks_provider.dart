@@ -26,6 +26,11 @@ class Tasks with ChangeNotifier {
     notifyListeners();
   }
 
+  void editTask(int index, String name) {
+    _items[index].name = name;
+    notifyListeners();
+  }
+
   void removeTask(int index) {
     _items.removeAt(index);
     notifyListeners();

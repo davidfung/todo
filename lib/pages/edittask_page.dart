@@ -1,31 +1,36 @@
 import 'package:flutter/material.dart';
-
 import 'package:provider/provider.dart';
-
-import 'package:todo/models/task.dart';
 import 'package:todo/providers/tasks_provider.dart';
 
-class AddTaskPage extends StatelessWidget {
+class EditTaskPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final int index = ModalRoute.of(context).settings.arguments;
+    final String taskName = Provider.of<Tasks>(context).items[index].name;
+    final _teController = TextEditingController();
+
     String _title;
+    _teController.text = taskName;
+    print(taskName);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Task"),
+        title: Text("Edit Task"),
       ),
       body: Container(
         child: Column(
           children: <Widget>[
             TextField(
               autofocus: true,
+              controller: _teController,
               onChanged: (title) {
                 _title = title;
               },
             ),
             RaisedButton(
-              child: Text('Add'),
+              child: Text('Save'),
               onPressed: () {
-                Provider.of<Tasks>(context).addTask(Task(name: _title.trim()));
+                Provider.of<Tasks>(context).editTask(index, _title.trim());
                 Navigator.pop(context);
               },
             ),

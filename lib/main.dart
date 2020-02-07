@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import './pages/addtask_page.dart';
+import './pages/edittask_page.dart';
 import './providers/tasks_provider.dart';
 import './widgets/task_view.dart';
 
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => HomePage(),
           '/addtask': (context) => AddTaskPage(),
+          '/edittask': (context) => EditTaskPage(),
         },
       ),
     );

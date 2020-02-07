@@ -22,7 +22,7 @@ class _TaskViewState extends State<TaskView> {
             tasks.removeTask(index);
           },
           background: Container(color: Colors.red),
-          child: TaskTile(taskName: taskName),
+          child: TaskTile(taskName: taskName, index: index),
         );
       },
     );
@@ -33,16 +33,18 @@ class TaskTile extends StatelessWidget {
   const TaskTile({
     Key key,
     @required this.taskName,
+    @required this.index,
   }) : super(key: key);
 
   final String taskName;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       title: Text('$taskName'),
       onTap: () {
-        Navigator.pushNamed(context, '/addtask');
+        Navigator.pushNamed(context, '/edittask', arguments: index);
       },
     );
   }
