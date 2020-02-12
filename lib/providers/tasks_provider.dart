@@ -14,9 +14,6 @@ class Tasks with ChangeNotifier {
     }
   }
 
-//  List<Task> get items {
-//    return [..._items];
-//  }
   List<Task> get items {
     return UnmodifiableListView<Task>(_items);
   }
