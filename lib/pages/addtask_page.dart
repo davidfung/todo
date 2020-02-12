@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:provider/provider.dart';
-
-import 'package:todo/models/task.dart';
+import 'package:todo/models/task_model.dart';
 import 'package:todo/providers/tasks_provider.dart';
 
 class AddTaskPage extends StatelessWidget {
