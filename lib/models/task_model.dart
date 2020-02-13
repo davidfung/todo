@@ -5,6 +5,7 @@ class Task {
   String name;
 
   Task({
+    this.id,
     @required this.name,
   });
 

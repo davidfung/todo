@@ -12,34 +12,17 @@ class Tasks with ChangeNotifier {
 
   @override
   Tasks() {
-    for (int i = 65; i <= 70; i++) {
-      _items.add(Task(name: "Entry ${String.fromCharCode(i)}"));
-    }
-    _dbInit();
-  }
-
-  Future<void> _dbInit() async {
-    db = await openDatabase(
-      join(await getDatabasesPath(), 'todo.db'),
-      onCreate: (db, version) {
-        return db.execute(
-          "CREATE TABLE task(id INTEGER PRIMARY KEY, name TEXT)",
-        );
-      },
-      version: 1,
-    );
-  }
-
-  Future<void> _dbInsert(Task task) async {
-    await db.insert(
-      'task',
-      task.toMap(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+    loadTasks();
   }
 
   List<Task> get items {
     return UnmodifiableListView<Task>(_items);
+  }
+
+  void loadTasks() async {
+    await _dbOpen();
+    await _dbLoad();
+    notifyListeners();
   }
 
   void addTask(Task task) {
@@ -56,5 +39,38 @@ class Tasks with ChangeNotifier {
   void removeTask(int index) {
     _items.removeAt(index);
     notifyListeners();
+  }
+
+  // Internal Database Routines
+
+  Future<void> _dbOpen() async {
+    db = await openDatabase(
+      join(await getDatabasesPath(), 'todo.db'),
+      onCreate: (db, version) {
+        return db.execute(
+          "CREATE TABLE task(id INTEGER PRIMARY KEY, name TEXT)",
+        );
+      },
+      version: 1,
+    );
+  }
+
+  Future<void> _dbLoad() async {
+    final List<Map<String, dynamic>> maps = await db.query('task');
+    // Convert the List<Map<String, dynamic> into a List<Task>.
+    _items = List.generate(maps.length, (i) {
+      return Task(
+        id: maps[i]['id'],
+        name: maps[i]['name'],
+      );
+    });
+  }
+
+  Future<void> _dbInsert(Task task) async {
+    await db.insert(
+      'task',
+      task.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 }
