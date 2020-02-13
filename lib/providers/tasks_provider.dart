@@ -33,15 +33,19 @@ class Tasks with ChangeNotifier {
 
   void editTask(int index, String name) {
     _items[index].name = name;
+    _dbUpdate(_items[index]);
     notifyListeners();
   }
 
   void removeTask(int index) {
+    _dbDelete(_items[index].id);
     _items.removeAt(index);
     notifyListeners();
   }
 
+  // --------------------------
   // Internal Database Routines
+  // --------------------------
 
   Future<void> _dbOpen() async {
     db = await openDatabase(
@@ -71,6 +75,23 @@ class Tasks with ChangeNotifier {
       'task',
       task.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+
+  Future<void> _dbUpdate(Task task) async {
+    await db.update(
+      'task',
+      task.toMap(),
+      where: "id = ?",
+      whereArgs: [task.id],
+    );
+  }
+
+  Future<void> _dbDelete(int id) async {
+    await db.delete(
+      'task',
+      where: "id = ?",
+      whereArgs: [id],
     );
   }
 }
