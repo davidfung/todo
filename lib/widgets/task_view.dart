@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import '../providers/tasks_provider.dart';
 import '../utils/email.dart' as email;
 
-const RECIPIENTS = ['david.fung@pmpgmbc.ca'];
+const RECIPIENTS = ['admin@pmpgmbc.ca'];
 const SUBJECT_MAXLEN = 80;
 
 class TaskView extends StatefulWidget {
