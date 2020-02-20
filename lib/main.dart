@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-
 import 'package:provider/provider.dart';
 
 import './pages/addtask_page.dart';
 import './pages/edittask_page.dart';
 import './providers/tasks_provider.dart';
+import './utils/email.dart' as email;
 import './widgets/task_view.dart';
 
 const APP_TITLE = 'Amazing Todo';
@@ -43,11 +43,26 @@ class HomePage extends StatelessWidget {
       body: TaskView(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/addtask');
+//          Navigator.pushNamed(context, '/addtask');
+          email.sendemail(
+              recipients: ['davidfung@amgcomputing.com'],
+              subject: 'test',
+              body: 'test body');
         },
         tooltip: 'Add',
         child: Icon(Icons.add),
       ),
     );
   }
+
+//  Future<void> _sendemail() async {
+//    final Email email = Email(
+//      body: 'Email body',
+//      subject: 'Email subject',
+//      recipients: ['davidfung@amgcomputing.com'],
+//      //attachmentPath: '/path/to/attachment.zip',
+//      isHTML: false,
+//    );
+//    await FlutterEmailSender.send(email);
+//  }
 }
