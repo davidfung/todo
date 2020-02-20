@@ -1,7 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/tasks_provider.dart';
+import '../utils/email.dart' as email;
+
+const RECIPIENTS = ['david.fung@pmpgmbc.ca'];
+const SUBJECT_MAXLEN = 80;
 
 class TaskView extends StatefulWidget {
   @override
@@ -43,8 +49,32 @@ class TaskTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text('$taskName'),
+      trailing: EmailButton(taskName),
       onTap: () {
         Navigator.pushNamed(context, '/edittask', arguments: index);
+      },
+    );
+  }
+}
+
+class EmailButton extends StatelessWidget {
+  final String msg;
+
+  const EmailButton(
+    this.msg,
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.email),
+      onPressed: () {
+        LineSplitter ls = new LineSplitter();
+        String subject = ls.convert(msg)[0];
+        if (subject.length > SUBJECT_MAXLEN) {
+          subject = subject.substring(0, SUBJECT_MAXLEN - 1);
+        }
+        email.sendemail(recipients: RECIPIENTS, subject: subject, body: msg);
       },
     );
   }
