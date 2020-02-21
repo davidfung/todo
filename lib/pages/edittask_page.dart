@@ -11,7 +11,6 @@ class EditTaskPage extends StatelessWidget {
 
     String _title;
     _teController.text = taskName;
-    print(taskName);
 
     return Scaffold(
       appBar: AppBar(
@@ -30,7 +29,9 @@ class EditTaskPage extends StatelessWidget {
             RaisedButton(
               child: Text('Save'),
               onPressed: () {
-                Provider.of<Tasks>(context).editTask(index, _title.trim());
+                if (_title != null) {
+                  Provider.of<Tasks>(context).editTask(index, _title.trim());
+                }
                 Navigator.pop(context);
               },
             ),
