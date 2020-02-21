@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import './components/task_view.dart';
 import './pages/addtask_page.dart';
 import './pages/edittask_page.dart';
 import './providers/tasks_provider.dart';
-import './widgets/task_view.dart';
 
 const APP_TITLE = 'Amazing Todo';
 
