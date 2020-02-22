@@ -15,7 +15,7 @@ Future<int> loadInt(String key, {int defaultValue}) async {
   return _value;
 }
 
-void saveInt(String key, int value) async {
+Future<void> saveInt(String key, int value) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.setInt(key, value);
   print("_saveInt() $value");
@@ -36,7 +36,7 @@ Future<String> loadString(String key, {String defaultValue}) async {
   return _value;
 }
 
-void saveString(String key, String value) async {
+Future<void> saveString(String key, String value) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.setString(key, value);
   print("_saveString() $value");
