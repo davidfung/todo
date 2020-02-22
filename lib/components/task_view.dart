@@ -5,8 +5,9 @@ import 'package:provider/provider.dart';
 
 import '../providers/tasks_provider.dart';
 import '../utils/email.dart' as email;
+import '../utils/settings.dart' as settings;
 
-const RECIPIENTS = ['admin@pmpgmbc.ca'];
+const SETTING_RECIPIENT = 'recipient';
 const SUBJECT_MAXLEN = 80;
 
 class TaskView extends StatefulWidget {
@@ -66,15 +67,18 @@ class EmailButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String recipient;
     return IconButton(
       icon: Icon(Icons.email),
-      onPressed: () {
+      onPressed: () async {
         LineSplitter ls = new LineSplitter();
         String subject = ls.convert(msg)[0];
         if (subject.length > SUBJECT_MAXLEN) {
           subject = subject.substring(0, SUBJECT_MAXLEN - 1);
         }
-        email.sendemail(recipients: RECIPIENTS, subject: subject, body: msg);
+        recipient =
+            await settings.loadString(SETTING_RECIPIENT, defaultValue: '');
+        email.sendemail(recipients: [recipient], subject: subject, body: msg);
       },
     );
   }
