@@ -39,6 +39,14 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(APP_TITLE),
       ),
+      drawer: Drawer(
+        child: ListView(
+          children: <Widget>[
+            ListTile(title: Text('Settings')),
+            ListTile(title: Text('About')),
+          ],
+        ),
+      ),
       body: TaskView(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
