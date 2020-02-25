@@ -6,6 +6,7 @@ import './pages/addtask_page.dart';
 import './pages/edittask_page.dart';
 import './pages/settings_page.dart';
 import './providers/tasks_provider.dart';
+import './widgets/main_drawer.dart';
 import './widgets/task_view.dart';
 
 const APP_TITLE = 'Amazing Todo';
@@ -43,24 +44,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(APP_TITLE),
       ),
-      drawer: Drawer(
-        child: ListView(
-          children: <Widget>[
-            ListTile(
-              title: Text(SettingsPage.title),
-              onTap: () {
-                Navigator.of(context).popAndPushNamed(SettingsPage.routeName);
-              },
-            ),
-            ListTile(
-              title: Text(AboutPage.title),
-              onTap: () {
-                Navigator.of(context).popAndPushNamed(AboutPage.routeName);
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: MainDrawer(),
       body: TaskView(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
