@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import './components/task_view.dart';
+import './pages/about_page.dart';
 import './pages/addtask_page.dart';
 import './pages/edittask_page.dart';
+import './pages/settings_page.dart';
 import './providers/tasks_provider.dart';
 
 const APP_TITLE = 'Amazing Todo';
@@ -26,6 +28,8 @@ class MyApp extends StatelessWidget {
           '/': (context) => HomePage(),
           '/addtask': (context) => AddTaskPage(),
           '/edittask': (context) => EditTaskPage(),
+          AboutPage.routeName: (context) => AboutPage(),
+          SettingsPage.routeName: (context) => SettingsPage(),
         },
       ),
     );
@@ -42,8 +46,18 @@ class HomePage extends StatelessWidget {
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
-            ListTile(title: Text('Settings')),
-            ListTile(title: Text('About')),
+            ListTile(
+              title: Text(SettingsPage.title),
+              onTap: () {
+                Navigator.of(context).popAndPushNamed(SettingsPage.routeName);
+              },
+            ),
+            ListTile(
+              title: Text(AboutPage.title),
+              onTap: () {
+                Navigator.of(context).popAndPushNamed(AboutPage.routeName);
+              },
+            ),
           ],
         ),
       ),
