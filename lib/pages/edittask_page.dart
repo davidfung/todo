@@ -3,6 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:todo/providers/tasks_provider.dart';
 
 class EditTaskPage extends StatelessWidget {
+  static const String routeName = "/edittask";
+  static const String title = "Edit Task";
+  static const String _saveButtonName = "Save";
+
   @override
   Widget build(BuildContext context) {
     final int index = ModalRoute.of(context).settings.arguments;
@@ -14,7 +18,7 @@ class EditTaskPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Edit Task"),
+        title: Text(title),
       ),
       body: Container(
         child: Column(
@@ -27,7 +31,7 @@ class EditTaskPage extends StatelessWidget {
               },
             ),
             RaisedButton(
-              child: Text('Save'),
+              child: Text(_saveButtonName),
               onPressed: () {
                 if (_title != null) {
                   Provider.of<Tasks>(context).editTask(index, _title.trim());
