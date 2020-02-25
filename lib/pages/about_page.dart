@@ -11,7 +11,7 @@ class AboutPage extends StatelessWidget {
     TextStyle _captionStyle =
         TextStyle(fontWeight: FontWeight.bold, fontSize: 18);
     TextStyle _bodyStyle = TextStyle(fontSize: 16);
-    TextStyle _linkStyle = TextStyle(fontStyle: FontStyle.italic, fontSize: 18);
+    TextStyle _linkStyle = TextStyle(fontSize: 18, color: Colors.blue);
 
     return Scaffold(
       appBar: AppBar(
@@ -25,7 +25,7 @@ class AboutPage extends StatelessWidget {
             padding: EdgeInsets.only(top: 7),
           ),
           Text(
-              'If you frequently need to generate pin numbers for various types of reason, this app can help you.',
+              'If you use your email inbox as a master to-do list, this app is for you.',
               style: _bodyStyle),
           Padding(
             padding: EdgeInsets.only(top: 30),
@@ -35,26 +35,20 @@ class AboutPage extends StatelessWidget {
             padding: EdgeInsets.only(top: 7),
           ),
           Text(
-              'It generates pin numbers for you instead of you think of some "not-so-random" random pin numbers.',
+              'By adding an item to this to-do list, you can email yourself a copy with a click of a button.  You can use this feature to quickly consolidate to-do items from different sources and keep them neatly in your email inbox as a reminder.',
               style: _bodyStyle),
           Padding(
             padding: EdgeInsets.only(top: 30),
           ),
-          Text('WARNING', style: _captionStyle),
+          Text('FEEDBACK', style: _captionStyle),
           Padding(
             padding: EdgeInsets.only(top: 7),
-          ),
-          Text(
-              'These pin numbers are not secure enough to be used as passwords.',
-              style: _bodyStyle),
-          Padding(
-            padding: EdgeInsets.only(top: 40),
           ),
           InkWell(
               onTap: () {
                 _launchURL();
               },
-              child: Text('amg99.com', style: _linkStyle)),
+              child: Text('Visit amg99.com', style: _linkStyle)),
         ],
       ),
     );
