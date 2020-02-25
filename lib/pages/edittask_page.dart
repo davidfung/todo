@@ -21,10 +21,13 @@ class EditTaskPage extends StatelessWidget {
         title: Text(title),
       ),
       body: Container(
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           children: <Widget>[
             TextField(
               autofocus: true,
+              keyboardType: TextInputType.multiline,
+              maxLines: 10,
               controller: _teController,
               onChanged: (title) {
                 _title = title;

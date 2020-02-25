@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../pages/edittask_page.dart';
 import '../providers/tasks_provider.dart';
 import '../utils/email.dart' as email;
 import '../utils/settings.dart' as settings;
@@ -48,12 +49,17 @@ class TaskTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text('$taskName'),
-      trailing: EmailButton(taskName),
-      onTap: () {
-        Navigator.pushNamed(context, '/edittask', arguments: index);
-      },
+    return Container(
+      decoration: BoxDecoration(
+          border: Border(top: BorderSide(width: 0.5, color: Colors.grey))),
+      child: ListTile(
+        title: Text('$taskName'),
+        trailing: EmailButton(taskName),
+        onTap: () {
+          Navigator.pushNamed(context, EditTaskPage.routeName,
+              arguments: index);
+        },
+      ),
     );
   }
 }
