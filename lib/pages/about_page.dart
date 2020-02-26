@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+const String aboutUrl = 'https://amg99.com';
+
+const TextStyle captionStyle =
+    TextStyle(fontWeight: FontWeight.bold, fontSize: 18);
+const TextStyle bodyStyle = TextStyle(fontSize: 16);
+const TextStyle linkStyle = TextStyle(fontSize: 18, color: Colors.blue);
+
 class AboutPage extends StatelessWidget {
   static const String routeName = '/about';
   static const String title = 'About';
-  static const String aboutUrl = 'https://amg99.com';
 
   @override
   Widget build(BuildContext context) {
-    TextStyle _captionStyle =
-        TextStyle(fontWeight: FontWeight.bold, fontSize: 18);
-    TextStyle _bodyStyle = TextStyle(fontSize: 16);
-    TextStyle _linkStyle = TextStyle(fontSize: 18, color: Colors.blue);
-
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -20,37 +21,67 @@ class AboutPage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
         children: <Widget>[
-          Text('WHY', style: _captionStyle),
-          Padding(
-            padding: EdgeInsets.only(top: 7),
+          SectionWidget(
+            sectionTitle: "WHY",
+            sectionBody:
+                'If you use your email inbox as a master to-do list, this app is for you.',
           ),
-          Text(
-              'If you use your email inbox as a master to-do list, this app is for you.',
-              style: _bodyStyle),
-          Padding(
-            padding: EdgeInsets.only(top: 30),
+          SectionWidget(
+            sectionTitle: "TODO",
+            sectionBody:
+                "By adding an item to this to-do list, you can email yourself a copy with a click of a button.  You can use this feature to quickly consolidate to-do items from different sources and keep them neatly in your email inbox as a reminder.",
           ),
-          Text('TODO', style: _captionStyle),
-          Padding(
-            padding: EdgeInsets.only(top: 7),
-          ),
-          Text(
-              'By adding an item to this to-do list, you can email yourself a copy with a click of a button.  You can use this feature to quickly consolidate to-do items from different sources and keep them neatly in your email inbox as a reminder.',
-              style: _bodyStyle),
-          Padding(
-            padding: EdgeInsets.only(top: 30),
-          ),
-          Text('FEEDBACK', style: _captionStyle),
-          Padding(
-            padding: EdgeInsets.only(top: 7),
-          ),
-          InkWell(
-              onTap: () {
-                _launchURL();
-              },
-              child: Text('Visit amg99.com', style: _linkStyle)),
+          FeedbackWidget(),
         ],
       ),
+    );
+  }
+}
+
+class SectionWidget extends StatelessWidget {
+  const SectionWidget({
+    Key key,
+    @required this.sectionTitle,
+    @required this.sectionBody,
+  }) : super(key: key);
+
+  final String sectionTitle;
+  final String sectionBody;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(sectionTitle, style: captionStyle),
+        Padding(
+          padding: EdgeInsets.only(top: 7),
+        ),
+        Text(sectionBody, style: bodyStyle),
+        Padding(
+          padding: EdgeInsets.only(top: 30),
+        ),
+      ],
+    );
+  }
+}
+
+class FeedbackWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text('FEEDBACK', style: captionStyle),
+        Padding(
+          padding: EdgeInsets.only(top: 7),
+        ),
+        InkWell(
+            onTap: () {
+              _launchURL();
+            },
+            child: Text('Visit amg99.com', style: linkStyle)),
+      ],
     );
   }
 
