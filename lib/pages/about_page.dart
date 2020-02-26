@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-const String aboutUrl = 'https://amg99.com';
-
-const TextStyle captionStyle =
-    TextStyle(fontWeight: FontWeight.bold, fontSize: 18);
-const TextStyle bodyStyle = TextStyle(fontSize: 16);
-const TextStyle linkStyle = TextStyle(fontSize: 18, color: Colors.blue);
+import '../constants.dart';
 
 class AboutPage extends StatelessWidget {
   static const String routeName = '/about';
