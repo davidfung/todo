@@ -11,22 +11,36 @@ class MainDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
+      child: Column(
         children: <Widget>[
-          ListTile(
-            title: Text(SettingsPage.title),
-            onTap: () {
-              Navigator.of(context).popAndPushNamed(SettingsPage.routeName);
-            },
+          Container(
+            height: 90,
+            color: Theme.of(context).accentColor,
           ),
-          ListTile(
-            title: Text(AboutPage.title),
-            onTap: () {
-              Navigator.of(context).popAndPushNamed(AboutPage.routeName);
-            },
-          ),
+          buildListTile(SettingsPage.title, Icons.settings, () {
+            Navigator.of(context).popAndPushNamed(SettingsPage.routeName);
+          }),
+          buildListTile(AboutPage.title, Icons.info_outline, () {
+            Navigator.of(context).popAndPushNamed(AboutPage.routeName);
+          }),
         ],
       ),
+    );
+  }
+
+  Widget buildListTile(String title, IconData icon, Function tapHandler) {
+    return ListTile(
+      leading: Icon(
+        icon,
+        size: 26,
+      ),
+      title: Text(
+        title,
+        style: TextStyle(
+          fontSize: 18,
+        ),
+      ),
+      onTap: tapHandler,
     );
   }
 }
