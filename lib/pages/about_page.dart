@@ -30,7 +30,7 @@ class AboutPage extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(top: 30),
           ),
-          Text('GEN PIN', style: _captionStyle),
+          Text('TODO', style: _captionStyle),
           Padding(
             padding: EdgeInsets.only(top: 7),
           ),
