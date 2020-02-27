@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todo/constants.dart';
 
@@ -23,31 +22,58 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Widget _buildPage(BuildContext context) {
     return ListView(
+      padding: EdgeInsets.all(10.0),
       children: <Widget>[
-        ListTile(
-            title: const Padding(
-                padding: EdgeInsets.only(left: 10.0, top: 10.0),
-                child: Text(
-                  'Email Recipients',
-                  style: captionStyle,
-                ))),
-        _buildEmailRecipient(context, 1),
-        ListTile(
-          title: const Text('6 digits'),
-          leading: Radio(),
-        ),
-        ListTile(
-          title: const Text('8 digits'),
-          leading: Radio(),
-        ),
+        _buildSectionHead(context),
+        _buildEmailRecipient(context),
+        _buildEmailRecipient(context),
+        _buildEmailRecipient(context),
       ],
     );
   }
 
-  Widget _buildEmailRecipient(BuildContext context, int index) {
-    return Row(
+  Widget _buildSectionHead(BuildContext context) {
+    return ListTile(
+        title: Text(
+      'Email Recipients',
+      style: captionStyle,
+    ));
+  }
+
+  Widget _buildEmailRecipient(BuildContext context) {
+    return Column(
       children: <Widget>[
-        Text(index.toString()),
+        Row(children: <Widget>[
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: TextField(),
+            ),
+          ),
+        ]),
+        Row(
+          children: <Widget>[
+            Flexible(
+                child: SwitchListTile(
+              title: const Text('To'),
+              value: true,
+              onChanged: (bool value) {
+                setState(() {});
+              },
+            )),
+            Flexible(
+                child: SwitchListTile(
+              title: const Text('Cc'),
+              value: false,
+              onChanged: (bool value) {
+                setState(() {});
+              },
+            )),
+            Flexible(
+              child: SizedBox(),
+            ),
+          ],
+        )
       ],
     );
   }
