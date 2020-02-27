@@ -16,7 +16,7 @@ class AddTaskPage extends StatelessWidget {
         title: Text(title),
       ),
       body: Container(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
         child: Column(
           children: <Widget>[
             TextField(
