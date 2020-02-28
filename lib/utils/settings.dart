@@ -11,14 +11,12 @@ Future<int> loadInt(String key, {int defaultValue}) async {
   if (_value == null) {
     _value = defaultValue;
   }
-  print("_loadInt() $_value");
   return _value;
 }
 
 Future<void> saveInt(String key, int value) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.setInt(key, value);
-  print("_saveInt() $value");
 }
 
 Future<String> loadString(String key, {String defaultValue}) async {
@@ -32,12 +30,29 @@ Future<String> loadString(String key, {String defaultValue}) async {
   if (_value == null) {
     _value = defaultValue;
   }
-  print("_loadString() $_value");
   return _value;
 }
 
 Future<void> saveString(String key, String value) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.setString(key, value);
-  print("_saveString() $value");
+}
+
+Future<bool> loadBool(String key, {bool defaultValue}) async {
+  bool _value;
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  try {
+    _value = prefs.getBool(key);
+  } catch (e) {
+    _value = defaultValue;
+  }
+  if (_value == null) {
+    _value = defaultValue;
+  }
+  return _value;
+}
+
+Future<void> saveBool(String key, bool value) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setBool(key, value);
 }
