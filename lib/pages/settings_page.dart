@@ -18,6 +18,7 @@ class _SettingsPageState extends State<SettingsPage> {
   String email1 = "";
   bool to1 = false;
   bool cc1 = false;
+  bool loaded = false;
 
   @override
   void initState() {
@@ -31,16 +32,25 @@ class _SettingsPageState extends State<SettingsPage> {
     this.cc1 = await loadBool(settingCc1, defaultValue: false);
     print("loaded $settingTo1=$to1");
     print("loaded $settingCc1=$cc1");
+    loaded = true;
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
+    Widget body;
+    if (loaded) {
+      body = _buildPage(context);
+    } else {
+      body = Center(
+        child: CircularProgressIndicator(),
+      );
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text(SettingsPage.title),
       ),
-      body: _buildPage(context),
+      body: body,
     );
   }
 
@@ -65,13 +75,23 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   Widget _buildEmailRecipient(BuildContext context) {
+    final _teController = TextEditingController();
+    _teController.text = email1;
+
     return Column(
       children: <Widget>[
         Row(children: <Widget>[
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: TextField(),
+              child: TextField(
+                  keyboardType: TextInputType.emailAddress,
+                  controller: _teController,
+                  onChanged: (value) {
+                    this.email1 = value;
+                    print("saving $settingEmail1=$value");
+                    saveString(settingEmail1, value);
+                  }),
             ),
           ),
         ]),
