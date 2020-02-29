@@ -21,7 +21,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   void initState() {
-    loadSettings();
+    ///loadSettings();
     super.initState();
   }
 
@@ -31,17 +31,26 @@ class _SettingsPageState extends State<SettingsPage> {
     this.cc1 = await loadBool(settingCc1, defaultValue: false);
     print("loaded $settingTo1=$to1");
     print("loaded $settingCc1=$cc1");
-    setState(() {});
+    //setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(SettingsPage.title),
-      ),
-      body: _buildPage(context),
-    );
+    return FutureBuilder<void>(
+        future: loadSettings(),
+        builder: (context, snapshot) {
+          Widget body;
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            body = CircularProgressIndicator();
+          } else {
+            body = _buildPage(context);
+          }
+          return Scaffold(
+              appBar: AppBar(
+                title: Text(SettingsPage.title),
+              ),
+              body: body);
+        });
   }
 
   Widget _buildPage(BuildContext context) {
