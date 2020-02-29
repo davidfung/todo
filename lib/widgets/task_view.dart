@@ -3,13 +3,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../constants.dart';
 import '../pages/edittask_page.dart';
 import '../providers/tasks_provider.dart';
 import '../utils/email.dart' as email;
 import '../utils/settings.dart' as settings;
-
-const SETTING_RECIPIENT = 'recipient';
-const SUBJECT_MAXLEN = 80;
 
 class TaskView extends StatefulWidget {
   @override
@@ -79,11 +77,10 @@ class EmailButton extends StatelessWidget {
       onPressed: () async {
         LineSplitter ls = new LineSplitter();
         String subject = ls.convert(msg)[0];
-        if (subject.length > SUBJECT_MAXLEN) {
-          subject = subject.substring(0, SUBJECT_MAXLEN - 1);
+        if (subject.length > emailSubjectMaxLen) {
+          subject = subject.substring(0, emailSubjectMaxLen - 1);
         }
-        recipient =
-            await settings.loadString(SETTING_RECIPIENT, defaultValue: '');
+        recipient = await settings.loadString(settingEmail1, defaultValue: '');
         email.sendemail(recipients: [recipient], subject: subject, body: msg);
       },
     );
