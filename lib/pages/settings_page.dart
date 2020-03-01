@@ -48,6 +48,22 @@ class _SettingsPageState extends State<SettingsPage> {
     setState(() {});
   }
 
+  List _getRecipientInfo(int index) {
+    List info;
+    switch (index) {
+      case 1:
+        info = [this.email1, this.to1, this.cc1];
+        break;
+      case 2:
+        info = [this.email2, this.to2, this.cc2];
+        break;
+      case 3:
+        info = [this.email3, this.to2, this.cc3];
+        break;
+    }
+    return info;
+  }
+
   void _updateEmail(int index, String value) {
     switch (index) {
       case 1:
@@ -125,9 +141,9 @@ class _SettingsPageState extends State<SettingsPage> {
       padding: EdgeInsets.all(10.0),
       children: <Widget>[
         _buildSectionHead(context),
-        _buildEmailRecipient(context, 1, this.email1, this.to1, this.cc1),
-        _buildEmailRecipient(context, 2, this.email2, this.to2, this.cc2),
-        _buildEmailRecipient(context, 3, this.email3, this.to3, this.cc3),
+        _buildEmailRecipient(context, 1),
+        _buildEmailRecipient(context, 2),
+        _buildEmailRecipient(context, 3),
       ],
     );
   }
@@ -140,8 +156,12 @@ class _SettingsPageState extends State<SettingsPage> {
     ));
   }
 
-  Widget _buildEmailRecipient(
-      BuildContext context, int index, String email, bool sendTo, bool sendCc) {
+  Widget _buildEmailRecipient(BuildContext context, int index) {
+    final List info = _getRecipientInfo(index);
+    String email = info[0];
+    bool sendTo = info[1];
+    bool sendCc = info[2];
+
     final _teController = TextEditingController();
     _teController.text = email;
 
