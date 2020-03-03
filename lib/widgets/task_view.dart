@@ -27,8 +27,21 @@ class _TaskViewState extends State<TaskView> {
           onDismissed: (direction) {
             tasks.removeTask(index);
           },
-          background: Container(color: Colors.red),
+          background: Container(
+              alignment: AlignmentDirectional.centerStart,
+              color: Colors.red,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                child: Icon(Icons.cancel, color: Colors.white),
+              )),
           child: TaskTile(taskName: taskName, index: index),
+          secondaryBackground: Container(
+              alignment: AlignmentDirectional.centerEnd,
+              color: Colors.red,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 30, 0),
+                child: Icon(Icons.cancel, color: Colors.white),
+              )),
         );
       },
     );
