@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo/providers/tasks_provider.dart';
+
+import '../providers/tasks_provider.dart';
+import '../widgets/email_button.dart';
 
 class EditTaskPage extends StatelessWidget {
   static const String routeName = "/edittask";
@@ -19,6 +21,7 @@ class EditTaskPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
+        actions: <Widget>[EmailButton(taskName), SizedBox(width: 15)],
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
