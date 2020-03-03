@@ -58,7 +58,7 @@ class _SettingsPageState extends State<SettingsPage> {
         info = [this.email2, this.to2, this.cc2];
         break;
       case 3:
-        info = [this.email3, this.to2, this.cc3];
+        info = [this.email3, this.to3, this.cc3];
         break;
     }
     return info;
