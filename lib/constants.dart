@@ -7,7 +7,7 @@ const TextStyle captionStyle =
 const TextStyle bodyStyle = TextStyle(fontSize: 16);
 const TextStyle linkStyle = TextStyle(fontSize: 18, color: Colors.blue);
 
-const emailSubjectMaxLen = 80;
+const emailSubjectMaxLen = 60;
 
 /*
  * Settings
