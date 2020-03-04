@@ -9,8 +9,9 @@ with the option to forward an item to an email address.
 
 ## TODO
 
+- splash screen
+- import/export
 - re-order list
-- edit item
-- local backend
+- refactor: use map() to compose email recipients
 
 Developed by [amg99](https://amg99.com), maker of personal mobile apps.
