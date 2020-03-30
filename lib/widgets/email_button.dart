@@ -7,8 +7,6 @@ import '../constants.dart';
 import '../utils/email.dart' as email;
 import '../utils/settings.dart' as settings;
 
-const msg_ack_email = 'Email sent!';
-
 class EmailButton extends StatelessWidget {
   final String msg;
   final String pageRoute;
@@ -41,9 +39,6 @@ class EmailButton extends StatelessWidget {
             cc: recipientList['cc'],
             subject: subject,
             body: msg);
-        Scaffold.of(context).showSnackBar(SnackBar(
-          content: Text(msg_ack_email),
-        ));
       },
     );
   }
