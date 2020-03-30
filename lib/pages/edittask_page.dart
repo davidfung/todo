@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../constants.dart';
 import '../providers/tasks_provider.dart';
 import '../widgets/email_button.dart';
 
@@ -21,7 +22,10 @@ class EditTaskPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
-        actions: <Widget>[EmailButton(taskName), SizedBox(width: 15)],
+        actions: <Widget>[
+          EmailButton(taskName, Page.EditTask),
+          SizedBox(width: 15)
+        ],
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
