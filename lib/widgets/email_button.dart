@@ -6,6 +6,8 @@ import '../constants.dart';
 import '../utils/email.dart' as email;
 import '../utils/settings.dart' as settings;
 
+const msg_ack_email = 'Email sent!';
+
 class EmailButton extends StatelessWidget {
   final String msg;
 
@@ -17,7 +19,9 @@ class EmailButton extends StatelessWidget {
   Widget build(BuildContext context) {
     Map<String, List<String>> recipientList;
     return IconButton(
-      icon: Icon(Icons.email),
+      icon: Icon(
+        Icons.email,
+      ),
       onPressed: () async {
         LineSplitter ls = new LineSplitter();
         String subject = ls.convert(msg)[0];
@@ -30,6 +34,9 @@ class EmailButton extends StatelessWidget {
             cc: recipientList['cc'],
             subject: subject,
             body: msg);
+        Scaffold.of(context).showSnackBar(SnackBar(
+          content: Text(msg_ack_email),
+        ));
       },
     );
   }
