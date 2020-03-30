@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo/constants.dart';
 
 import '../pages/edittask_page.dart';
 import '../providers/tasks_provider.dart';
@@ -62,7 +61,7 @@ class TaskTile extends StatelessWidget {
           border: Border(top: BorderSide(width: 0.5, color: Colors.grey))),
       child: ListTile(
         title: Text('$taskName'),
-        trailing: EmailButton(taskName, Page.Main),
+        trailing: EmailButton(taskName),
         onTap: () {
           Navigator.pushNamed(context, EditTaskPage.routeName,
               arguments: index);

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../constants.dart';
 import '../providers/tasks_provider.dart';
 import '../widgets/email_button.dart';
 
@@ -23,7 +22,10 @@ class EditTaskPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
         actions: <Widget>[
-          EmailButton(taskName, Page.EditTask),
+          EmailButton(
+            taskName,
+            pageRoute: EditTaskPage.routeName,
+          ),
           SizedBox(width: 15)
         ],
       ),

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:todo/pages/edittask_page.dart';
 
 import '../constants.dart';
 import '../utils/email.dart' as email;
@@ -10,17 +11,19 @@ const msg_ack_email = 'Email sent!';
 
 class EmailButton extends StatelessWidget {
   final String msg;
-  final Page page;
+  final String pageRoute;
 
   const EmailButton(
-    this.msg,
-    this.page,
-  );
+    this.msg, {
+    this.pageRoute = '',
+  });
 
   @override
   Widget build(BuildContext context) {
     Map<String, List<String>> recipientList;
-    Color color = (this.page == Page.EditTask) ? Colors.grey[400] : Colors.grey;
+    Color color = (this.pageRoute == EditTaskPage.routeName)
+        ? Colors.grey[400]
+        : Colors.grey;
     return IconButton(
       icon: Icon(
         Icons.email,

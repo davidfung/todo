@@ -9,14 +9,6 @@ const TextStyle linkStyle = TextStyle(fontSize: 18, color: Colors.blue);
 
 const emailSubjectMaxLen = 60;
 
-enum Page {
-  Main,
-  AddTask,
-  EditTask,
-  Settings,
-  About,
-}
-
 /*
  * Settings
  */
