@@ -39,7 +39,8 @@ class _AboutPageState extends State<AboutPage> {
                   ),
                   SectionWidget(
                     sectionTitle: "VERSION",
-                    sectionBody: snapshot.data.version,
+                    sectionBody:
+                        snapshot.data.version + '+' + snapshot.data.buildNumber,
                   ),
                   FeedbackWidget(),
                 ],
