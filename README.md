@@ -8,18 +8,17 @@ with the option to forward an item to an email address.
 
 - Single user, login not required
 - Local storage, cloud not required
-- Import/Export
 
 ## TODO
 
 - [ ] Fix mailto setting not working
 - [ ] Add paste button to paste text at end in both add & edit screen
 - [ ] Email button in edit screen email current content
-- [ ] Add new task to the top of list
-- [ ] splash screen
-- [ ] import/export
-- [ ] re-order list
-- [ ] refactor: use map() to compose email recipients
+- [x] Add new task to the top of list
+- [ ] Add splash screen
+- [ ] Add import/export
+- [ ] Allow re-order list
+- [ ] Refactor: use map() to compose email recipients
 
 Developed by [amg99], maker of personal mobile apps.
 

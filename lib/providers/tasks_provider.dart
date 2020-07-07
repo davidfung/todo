@@ -26,7 +26,9 @@ class Tasks with ChangeNotifier {
   }
 
   void addTask(Task task) {
-    _items.add(task);
+    //TODO: make it an option to add to top or bottom of list
+    //// _items.add(task);
+    _items.insert(0, task);
     _dbInsert(task);
     notifyListeners();
   }
