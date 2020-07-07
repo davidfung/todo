@@ -12,9 +12,14 @@ with the option to forward an item to an email address.
 
 ## TODO
 
-- splash screen
-- import/export
-- re-order list
-- refactor: use map() to compose email recipients
+- [ ] Fix mailto setting not working
+- [ ] Add paste button to paste text at end in both add & edit screen
+- [ ] Email button in edit screen email current content
+- [ ] Add new task to the top of list
+- [ ] splash screen
+- [ ] import/export
+- [ ] re-order list
+- [ ] refactor: use map() to compose email recipients
+
 
 Developed by [amg99](https://amg99.com), maker of personal mobile apps.
