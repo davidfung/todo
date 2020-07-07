@@ -21,5 +21,7 @@ with the option to forward an item to an email address.
 - [ ] re-order list
 - [ ] refactor: use map() to compose email recipients
 
+Developed by [amg99], maker of personal mobile apps.
 
-Developed by [amg99](https://amg99.com), maker of personal mobile apps.
+[amg99]: https://amg99.com
+
