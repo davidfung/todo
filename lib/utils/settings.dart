@@ -45,9 +45,11 @@ Future<bool> loadBool(String key, {bool defaultValue}) async {
     _value = prefs.getBool(key);
   } catch (e) {
     _value = defaultValue;
+    print(key + "AAA");
   }
   if (_value == null) {
     _value = defaultValue;
+    print(key + "BBB");
   }
   return _value;
 }

@@ -42,8 +42,15 @@ class _SettingsPageState extends State<SettingsPage> {
     this.cc1 = await loadBool(settingCc1, defaultValue: false);
     this.cc2 = await loadBool(settingCc2, defaultValue: false);
     this.cc3 = await loadBool(settingCc3, defaultValue: false);
+    print("loaded $settingEmail1=$email1");
+    print("loaded $settingEmail2=$email2");
+    print("loaded $settingEmail3=$email3");
     print("loaded $settingTo1=$to1");
+    print("loaded $settingTo2=$to2");
+    print("loaded $settingTo3=$to3");
     print("loaded $settingCc1=$cc1");
+    print("loaded $settingCc2=$cc2");
+    print("loaded $settingCc3=$cc3");
     loaded = true;
     setState(() {});
   }

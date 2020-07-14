@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo/pages/edittask_page.dart';
 
 import '../constants.dart';
 import '../utils/email.dart' as email;
-import '../utils/settings.dart' as settings;
 
 class EmailButton extends StatelessWidget {
   final String msg;
@@ -56,15 +56,39 @@ class EmailButton extends StatelessWidget {
     bool cc2;
     bool cc3;
 
-    email1 = await settings.loadString(settingEmail1, defaultValue: '');
-    email2 = await settings.loadString(settingEmail2, defaultValue: '');
-    email3 = await settings.loadString(settingEmail3, defaultValue: '');
-    to1 = await settings.loadBool(settingTo1, defaultValue: false);
-    to2 = await settings.loadBool(settingTo2, defaultValue: false);
-    to3 = await settings.loadBool(settingTo3, defaultValue: false);
-    cc1 = await settings.loadBool(settingCc1, defaultValue: false);
-    cc2 = await settings.loadBool(settingCc2, defaultValue: false);
-    cc3 = await settings.loadBool(settingCc3, defaultValue: false);
+//    email1 = await settings.loadString(settingEmail1, defaultValue: '');
+//    email2 = await settings.loadString(settingEmail2, defaultValue: '');
+//    email3 = await settings.loadString(settingEmail3, defaultValue: '');
+//    to1 = await settings.loadBool(settingTo1, defaultValue: false);
+//    to2 = await settings.loadBool(settingTo2, defaultValue: false);
+//    to3 = await settings.loadBool(settingTo3, defaultValue: false);
+//    cc1 = await settings.loadBool(settingCc1, defaultValue: false);
+//    cc2 = await settings.loadBool(settingCc2, defaultValue: false);
+//    cc3 = await settings.loadBool(settingCc3, defaultValue: false);
+
+//    SharedPreferences prefs = await SharedPreferences.getInstance();
+//    prefs.setBool(settingTo3, true);
+    email1 = prefs.getString(settingEmail1);
+    email2 = prefs.getString(settingEmail2);
+    email3 = prefs.getString(settingEmail3);
+    to1 = prefs.getBool(settingTo1);
+    to2 = prefs.getBool(settingTo2);
+    to3 = prefs.getBool(settingTo3);
+    cc1 = prefs.getBool(settingCc1);
+    cc2 = prefs.getBool(settingCc2);
+    cc3 = prefs.getBool(settingCc3);
+
+    print("loaded $settingEmail1=$email1");
+    print("loaded $settingEmail2=$email2");
+    print("loaded $settingEmail3=$email3");
+    print("loaded $settingTo1=$to1");
+    print("loaded $settingTo2=$to2");
+    print("loaded $settingTo3=$to3");
+    print("loaded $settingCc1=$cc1");
+    print("loaded $settingCc2=$cc2");
+    print("loaded $settingCc3=$cc3");
+
+    //Future.delayed(Duration(seconds: 30));
 
     if (to1 && email1 != '') {
       sendTo.add(email1);
