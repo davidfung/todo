@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/models/task_model.dart';
 import 'package:todo/providers/tasks_provider.dart';
+import 'package:todo/widgets/paste_button.dart';
 
 class AddTaskPage extends StatelessWidget {
   static const String routeName = "/addtask";
@@ -11,9 +12,17 @@ class AddTaskPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String _title;
+    final _teController = TextEditingController();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
+        actions: <Widget>[
+          PasteButton(
+            tecontroller: _teController,
+          ),
+          SizedBox(width: 15)
+        ],
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
@@ -23,6 +32,7 @@ class AddTaskPage extends StatelessWidget {
               autofocus: true,
               keyboardType: TextInputType.multiline,
               maxLines: 10,
+              controller: _teController,
               onChanged: (title) {
                 _title = title;
               },
