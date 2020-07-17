@@ -20,7 +20,7 @@ class EmailButton extends StatelessWidget {
   Widget build(BuildContext context) {
     Map<String, List<String>> recipientList;
     Color color = (this.pageRoute == EditTaskPage.routeName)
-        ? Colors.grey[400]
+        ? Colors.white //.grey[400]
         : Colors.grey;
     return IconButton(
       icon: Icon(
