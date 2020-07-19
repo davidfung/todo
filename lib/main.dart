@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
         title: 'Amazing Todo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
-          textTheme: TextTheme(body1: TextStyle(fontSize: 20.0)),
+          textTheme: TextTheme(bodyText2: TextStyle(fontSize: 20.0)),
         ),
         initialRoute: '/',
         routes: {
