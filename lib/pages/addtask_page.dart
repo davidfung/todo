@@ -19,7 +19,7 @@ class AddTaskPage extends StatelessWidget {
         title: Text(title),
         actions: <Widget>[
           PasteButton(
-            tecontroller: _teController,
+            teController: _teController,
           ),
           SizedBox(width: 15)
         ],
