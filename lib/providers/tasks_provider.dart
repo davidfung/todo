@@ -6,6 +6,33 @@ import 'package:sqflite/sqflite.dart';
 
 import '../models/task_model.dart';
 
+// the key represents the version of the db
+// TODO only support one sql statement in each version?
+Map<int, String> migrationScripts = {
+  1: '''
+CREATE TABLE task (
+  id INTEGER PRIMARY KEY, 
+  name TEXT)
+  ''',
+  2: '''
+ALTER TABLE task ADD timestamp DATETIME;
+  ''',
+  3: '''
+CREATE TRIGGER insert_timestamp
+AFTER INSERT ON task
+BEGIN
+   UPDATE task SET timestamp =STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW') WHERE id = NEW.id;
+END;
+  ''',
+  4: '''
+CREATE TRIGGER update_timestamp
+AFTER UPDATE On task
+BEGIN
+   UPDATE task SET timestamp = STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW') WHERE id = NEW.id;
+END;
+''',
+};
+
 class Tasks with ChangeNotifier {
   List<Task> _items = [];
   Database db;
@@ -50,14 +77,29 @@ class Tasks with ChangeNotifier {
   // --------------------------
 
   Future<void> _dbOpen() async {
+    int nbrMigrationScripts = migrationScripts.length;
     db = await openDatabase(
-      join(await getDatabasesPath(), 'todo.db'),
-      onCreate: (db, version) {
-        return db.execute(
-          "CREATE TABLE task(id INTEGER PRIMARY KEY, name TEXT)",
-        );
+      join(await getDatabasesPath(), "todo.db"),
+      version: nbrMigrationScripts,
+      // if the database does not exist, onCreate executes all the sql requests of the "migrationScripts" map
+      onCreate: (Database db, int version) async {
+        print('**************************** onCreate: $version');
+        for (int i = 1; i <= nbrMigrationScripts; i++) {
+          print('**************************** migrating version: $i');
+          await db.execute(migrationScripts[i]);
+        }
       },
-      version: 1,
+
+      /// if the database exists but the version of the database is different
+      /// from the version defined in parameter, onUpgrade will execute all sql requests greater than the old version
+      onUpgrade: (db, oldVersion, newVersion) async {
+        print(
+            '**************************** onUpgrade: $oldVersion -> $newVersion');
+        for (int i = oldVersion + 1; i <= newVersion; i++) {
+          print('**************************** migrating version: $i');
+          await db.execute(migrationScripts[i]);
+        }
+      },
     );
   }
 

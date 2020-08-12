@@ -15,7 +15,7 @@ class PasteButton extends StatelessWidget {
         color: color,
       ),
       onPressed: () async {
-        //TODO paste current clipboard content at the insertion point
+        // paste current clipboard content at the insertion point
         final ClipboardData clipData =
             await Clipboard.getData(Clipboard.kTextPlain);
         final String clipText = clipData.text ?? "";
