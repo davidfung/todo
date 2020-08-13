@@ -110,8 +110,11 @@ class Tasks with ChangeNotifier {
       return Task(
         id: maps[i]['id'],
         name: maps[i]['name'],
+        timestamp: maps[i]['timestamp'] ?? "",
       );
     });
+    // Sort the item list by last modified time descending
+    _items.sort((a, b) => -a.timestamp.compareTo(b.timestamp));
   }
 
   Future<void> _dbInsert(Task task) async {
