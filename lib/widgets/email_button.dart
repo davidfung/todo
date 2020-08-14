@@ -2,29 +2,35 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todo/pages/addtask_page.dart';
 import 'package:todo/pages/edittask_page.dart';
 
 import '../constants.dart';
 import '../utils/email.dart' as email;
 
 class EmailButton extends StatelessWidget {
-  final TextEditingController tec;
+  final TextEditingController teController;
   final String msg;
   final String pageRoute;
 
-  const EmailButton({
-    this.tec,
+  EmailButton({
+    this.teController,
     this.msg = '',
     this.pageRoute = '',
   });
 
+  final List<String> routeNameList = [
+    AddTaskPage.routeName,
+    EditTaskPage.routeName,
+  ];
+
   String getMsg() {
-    return this.tec?.text ?? this.msg;
+    return this.teController?.text ?? this.msg;
   }
 
   @override
   Widget build(BuildContext context) {
-    Color color = (this.pageRoute == EditTaskPage.routeName)
+    Color color = routeNameList.contains(this.pageRoute)
         ? Colors.white //.grey[400]
         : Colors.grey;
     return IconButton(

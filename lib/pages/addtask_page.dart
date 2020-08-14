@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/models/task_model.dart';
 import 'package:todo/providers/tasks_provider.dart';
+import 'package:todo/widgets/email_button.dart';
 import 'package:todo/widgets/paste_button.dart';
 
 class AddTaskPage extends StatelessWidget {
@@ -20,6 +21,10 @@ class AddTaskPage extends StatelessWidget {
         actions: <Widget>[
           PasteButton(
             teController: _teController,
+          ),
+          EmailButton(
+            teController: _teController,
+            pageRoute: AddTaskPage.routeName,
           ),
           SizedBox(width: 15)
         ],
@@ -46,7 +51,8 @@ class AddTaskPage extends StatelessWidget {
                       .addTask(Task(name: _title.trim()));
                 }
                 Navigator.pop(context);
-              },            ),
+              },
+            ),
           ],
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo/widgets/paste_button.dart';
 
 import '../providers/tasks_provider.dart';
 import '../widgets/email_button.dart';
@@ -22,8 +23,11 @@ class EditTaskPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
         actions: <Widget>[
+          PasteButton(
+            teController: _teController,
+          ),
           EmailButton(
-            tec: _teController,
+            teController: _teController,
             pageRoute: EditTaskPage.routeName,
           ),
           SizedBox(width: 15)
