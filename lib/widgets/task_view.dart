@@ -11,13 +11,31 @@ class TaskView extends StatefulWidget {
 }
 
 class _TaskViewState extends State<TaskView> {
+  ScrollController _scrollcontroller;
+
+  @override
+  void initState() {
+    _scrollcontroller = ScrollController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _scrollcontroller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final tasks = Provider.of<Tasks>(context);
     return ListView.builder(
+      controller: _scrollcontroller,
       itemCount: tasks.items.length,
       itemBuilder: (context, index) {
         final taskName = tasks.items[index].name;
+        //_scrollcontroller.jumpTo(0);
+        _scrollcontroller.animateTo(0,
+            duration: Duration(milliseconds: 750), curve: Curves.ease);
         return Dismissible(
           key: UniqueKey(),
           onDismissed: (direction) {
