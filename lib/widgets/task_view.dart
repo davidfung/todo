@@ -61,7 +61,9 @@ class TaskTile extends StatelessWidget {
           border: Border(top: BorderSide(width: 0.5, color: Colors.grey))),
       child: ListTile(
         title: Text('$taskName'),
-        trailing: EmailButton(taskName),
+        trailing: EmailButton(
+          msg: taskName,
+        ),
         onTap: () {
           Navigator.pushNamed(context, EditTaskPage.routeName,
               arguments: index);

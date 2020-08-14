@@ -8,13 +8,19 @@ import '../constants.dart';
 import '../utils/email.dart' as email;
 
 class EmailButton extends StatelessWidget {
+  final TextEditingController tec;
   final String msg;
   final String pageRoute;
 
-  const EmailButton(
-    this.msg, {
+  const EmailButton({
+    this.tec,
+    this.msg = '',
     this.pageRoute = '',
   });
+
+  String getMsg() {
+    return this.tec?.text ?? this.msg;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +50,9 @@ class EmailButton extends StatelessWidget {
     bool cc1;
     bool cc2;
     bool cc3;
+    String msg;
+
+    msg = getMsg();
 
     // subject
     LineSplitter ls = new LineSplitter();

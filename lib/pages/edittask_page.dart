@@ -23,7 +23,7 @@ class EditTaskPage extends StatelessWidget {
         title: Text(title),
         actions: <Widget>[
           EmailButton(
-            taskName,
+            tec: _teController,
             pageRoute: EditTaskPage.routeName,
           ),
           SizedBox(width: 15)
