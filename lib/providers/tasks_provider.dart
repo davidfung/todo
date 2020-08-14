@@ -63,6 +63,7 @@ class Tasks with ChangeNotifier {
   void editTask(int index, String name) {
     _items[index].name = name;
     _dbUpdate(_items[index]);
+    _items.insert(0, _items.removeAt(index));
     notifyListeners();
   }
 
@@ -83,9 +84,9 @@ class Tasks with ChangeNotifier {
       version: nbrMigrationScripts,
       // if the database does not exist, onCreate executes all the sql requests of the "migrationScripts" map
       onCreate: (Database db, int version) async {
-        print('**************************** onCreate: $version');
+        //print('**************************** onCreate: $version');
         for (int i = 1; i <= nbrMigrationScripts; i++) {
-          print('**************************** migrating version: $i');
+          //print('**************************** migrating version: $i');
           await db.execute(migrationScripts[i]);
         }
       },
@@ -93,10 +94,9 @@ class Tasks with ChangeNotifier {
       /// if the database exists but the version of the database is different
       /// from the version defined in parameter, onUpgrade will execute all sql requests greater than the old version
       onUpgrade: (db, oldVersion, newVersion) async {
-        print(
-            '**************************** onUpgrade: $oldVersion -> $newVersion');
+        //print('**************************** onUpgrade: $oldVersion -> $newVersion');
         for (int i = oldVersion + 1; i <= newVersion; i++) {
-          print('**************************** migrating version: $i');
+          //print('**************************** migrating version: $i');
           await db.execute(migrationScripts[i]);
         }
       },
