@@ -116,6 +116,7 @@ class _SettingsPageState extends State<SettingsPage> {
     print("saving settingCc$index=$value");
   }
 
+  // TODO: Add Email Prefix setting
   @override
   Widget build(BuildContext context) {
     Widget body;
