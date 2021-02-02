@@ -12,7 +12,7 @@ import './widgets/task_view.dart';
 import 'constants.dart';
 
 const APP_TITLE = 'Amazing Todo';
-const DEFAULT_EMAIL_PREFIX = '[todo] ';
+const DEFAULT_EMAIL_PREFIX = '[TODO] ';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -78,7 +78,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// TODO: Add "Add Task" button in app bar.
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

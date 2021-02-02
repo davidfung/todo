@@ -3,6 +3,7 @@ import 'package:todo/constants.dart';
 import 'package:todo/utils/settings.dart';
 
 const capEmailRecipients = 'Email Recipients';
+const capEmailPrefix = 'Email Subject Prefix';
 const capTo = 'To';
 const capCc = 'Cc';
 
@@ -24,6 +25,7 @@ class _SettingsPageState extends State<SettingsPage> {
   bool cc1 = false;
   bool cc2 = false;
   bool cc3 = false;
+  String emailPrefix = "";
   bool loaded = false;
 
   @override
@@ -42,6 +44,7 @@ class _SettingsPageState extends State<SettingsPage> {
     this.cc1 = await loadBool(settingCc1, defaultValue: false);
     this.cc2 = await loadBool(settingCc2, defaultValue: false);
     this.cc3 = await loadBool(settingCc3, defaultValue: false);
+    this.emailPrefix = await loadString(settingEmailPrefix, defaultValue: "");
     loaded = true;
     setState(() {});
   }
@@ -116,6 +119,12 @@ class _SettingsPageState extends State<SettingsPage> {
     print("saving settingCc$index=$value");
   }
 
+  void _updateEmailPrefix(String value) {
+    this.emailPrefix = value;
+    saveString(settingEmailPrefix, value);
+    print("saving settingEmailPrefix=$value");
+  }
+
   // TODO: Add Email Prefix setting
   @override
   Widget build(BuildContext context) {
@@ -139,18 +148,23 @@ class _SettingsPageState extends State<SettingsPage> {
     return ListView(
       padding: EdgeInsets.all(10.0),
       children: <Widget>[
-        _buildSectionHead(context),
+        _buildSectionHead(context, capEmailRecipients),
         _buildEmailRecipient(context, 1),
         _buildEmailRecipient(context, 2),
         _buildEmailRecipient(context, 3),
+        SizedBox(
+          height: 20.0,
+        ),
+        _buildSectionHead(context, capEmailPrefix),
+        _buildEmailPrefix(context),
       ],
     );
   }
 
-  Widget _buildSectionHead(BuildContext context) {
+  Widget _buildSectionHead(BuildContext context, String title) {
     return ListTile(
         title: Text(
-      capEmailRecipients,
+      title,
       style: captionStyle,
     ));
   }
@@ -206,6 +220,29 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ],
         )
+      ],
+    );
+  }
+
+  Widget _buildEmailPrefix(BuildContext context) {
+    final _teController = TextEditingController();
+    _teController.text = this.emailPrefix;
+
+    return Column(
+      children: <Widget>[
+        Row(children: <Widget>[
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: TextField(
+                  keyboardType: TextInputType.emailAddress,
+                  controller: _teController,
+                  onChanged: (value) {
+                    _updateEmailPrefix(value);
+                  }),
+            ),
+          ),
+        ]),
       ],
     );
   }
