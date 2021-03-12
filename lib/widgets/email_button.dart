@@ -45,8 +45,8 @@ class EmailButton extends StatelessWidget {
   }
 
   void _sendemail() async {
-    List<String> toList = List();
-    List<String> ccList = List();
+    List<String> toList = [];
+    List<String> ccList = [];
     String email1;
     String email2;
     String email3;
@@ -81,16 +81,6 @@ class EmailButton extends StatelessWidget {
     cc1 = prefs.getBool(settingCc1);
     cc2 = prefs.getBool(settingCc2);
     cc3 = prefs.getBool(settingCc3);
-
-    // print("email1=$email1");
-    // print("email2=$email2");
-    // print("email3=$email3");
-    // print("to1=$to1");
-    // print("to2=$to2");
-    // print("to3=$to3");
-    // print("cc1=$cc1");
-    // print("cc2=$cc2");
-    // print("cc3=$cc3");
 
     if (to1 && email1 != '') {
       toList.add(email1);

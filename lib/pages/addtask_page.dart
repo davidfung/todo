@@ -42,16 +42,16 @@ class AddTaskPage extends StatelessWidget {
                 _title = title;
               },
             ),
-            RaisedButton(
-              child: Text(_addButtonName),
+            ElevatedButton(
               onPressed: () {
                 _title = _teController.text ?? "";
                 if (_title.length > 0) {
-                  Provider.of<Tasks>(context)
+                  Provider.of<Tasks>(context, listen: false)
                       .addTask(Task(name: _title.trim()));
                 }
                 Navigator.pop(context);
               },
+              child: Text(_addButtonName),
             ),
           ],
         ),
