@@ -2,11 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todo/constants.dart';
 import 'package:todo/pages/addtask_page.dart';
 import 'package:todo/pages/edittask_page.dart';
-
-import '../constants.dart';
-import '../utils/email.dart' as email;
+import 'package:todo/utils/email.dart' as email;
+import 'package:todo/utils/settings.dart';
 
 enum Department {
   treasury,
@@ -33,31 +33,39 @@ class EmailButton extends StatelessWidget {
     return this.teController?.text ?? this.msg;
   }
 
-  final recipient1 = 'david.fung@pmpgmbc.ca';
-  final recipient2 = 'davidfung@amgcomputing.com';
-  var recipient = '';
-
   @override
   Widget build(BuildContext context) {
     Future<void> _askRecipient() async {
-      recipient = await showDialog<String>(
+      final recipient1 = await loadString(settingEmail1);
+      final recipient2 = await loadString(settingEmail2);
+      final recipient3 = await loadString(settingEmail3);
+      var recipient = await showDialog<String>(
           context: context,
           builder: (BuildContext context) {
             return SimpleDialog(
               title: const Text('Select recipient:'),
               children: <Widget>[
-                SimpleDialogOption(
-                  onPressed: () {
-                    Navigator.pop(context, recipient1);
-                  },
-                  child: Text(recipient1),
-                ),
-                SimpleDialogOption(
-                  onPressed: () {
-                    Navigator.pop(context, recipient2);
-                  },
-                  child: Text(recipient2),
-                ),
+                if (recipient1.isNotEmpty)
+                  SimpleDialogOption(
+                    onPressed: () {
+                      Navigator.pop(context, recipient1);
+                    },
+                    child: Text(recipient1),
+                  ),
+                if (recipient2.isNotEmpty)
+                  SimpleDialogOption(
+                    onPressed: () {
+                      Navigator.pop(context, recipient2);
+                    },
+                    child: Text(recipient2),
+                  ),
+                if (recipient3.isNotEmpty)
+                  SimpleDialogOption(
+                    onPressed: () {
+                      Navigator.pop(context, recipient3);
+                    },
+                    child: Text(recipient3),
+                  ),
               ],
             );
           });
