@@ -8,6 +8,11 @@ import 'package:todo/pages/edittask_page.dart';
 import '../constants.dart';
 import '../utils/email.dart' as email;
 
+enum Department {
+  treasury,
+  state,
+}
+
 class EmailButton extends StatelessWidget {
   final TextEditingController teController;
   final String msg;
@@ -28,23 +33,61 @@ class EmailButton extends StatelessWidget {
     return this.teController?.text ?? this.msg;
   }
 
+  final recipient1 = 'david.fung@pmpgmbc.ca';
+  final recipient2 = 'davidfung@amgcomputing.com';
+  var recipient = '';
+
   @override
   Widget build(BuildContext context) {
+    Future<void> _askRecipient() async {
+      recipient = await showDialog<String>(
+          context: context,
+          builder: (BuildContext context) {
+            return SimpleDialog(
+              title: const Text('Select recipient:'),
+              children: <Widget>[
+                SimpleDialogOption(
+                  onPressed: () {
+                    Navigator.pop(context, recipient1);
+                  },
+                  child: Text(recipient1),
+                ),
+                SimpleDialogOption(
+                  onPressed: () {
+                    Navigator.pop(context, recipient2);
+                  },
+                  child: Text(recipient2),
+                ),
+              ],
+            );
+          });
+      if (recipient?.isNotEmpty ?? false) {
+        _sendemail(recipient: recipient);
+      }
+    }
+
     Color color = routeNameList.contains(this.pageRoute)
         ? Colors.white //.grey[400]
         : Colors.grey;
-    return IconButton(
-      icon: Icon(
-        Icons.email,
-        color: color,
+
+    return GestureDetector(
+      child: IconButton(
+        icon: Icon(
+          Icons.email,
+          color: color,
+        ),
+        onPressed: () {
+          _sendemail();
+        },
       ),
-      onPressed: () {
-        _sendemail();
+      onLongPress: () {
+        print('long pressed ' * 10);
+        _askRecipient();
       },
     );
   }
 
-  void _sendemail() async {
+  void _sendemail({String recipient = ''}) async {
     List<String> toList = [];
     List<String> ccList = [];
     String email1;
@@ -72,36 +115,39 @@ class EmailButton extends StatelessWidget {
     }
 
     // recipients
-    email1 = prefs.getString(settingEmail1);
-    email2 = prefs.getString(settingEmail2);
-    email3 = prefs.getString(settingEmail3);
-    to1 = prefs.getBool(settingTo1);
-    to2 = prefs.getBool(settingTo2);
-    to3 = prefs.getBool(settingTo3);
-    cc1 = prefs.getBool(settingCc1);
-    cc2 = prefs.getBool(settingCc2);
-    cc3 = prefs.getBool(settingCc3);
+    if (recipient?.isNotEmpty ?? false) {
+      toList.add(recipient);
+    } else {
+      email1 = prefs.getString(settingEmail1);
+      email2 = prefs.getString(settingEmail2);
+      email3 = prefs.getString(settingEmail3);
+      to1 = prefs.getBool(settingTo1);
+      to2 = prefs.getBool(settingTo2);
+      to3 = prefs.getBool(settingTo3);
+      cc1 = prefs.getBool(settingCc1);
+      cc2 = prefs.getBool(settingCc2);
+      cc3 = prefs.getBool(settingCc3);
 
-    if (to1 && email1 != '') {
-      toList.add(email1);
-    }
-    if (to2 && email2 != '') {
-      toList.add(email2);
-    }
-    if (to3 && email3 != '') {
-      toList.add(email3);
-    }
+      if (to1 && email1 != '') {
+        toList.add(email1);
+      }
+      if (to2 && email2 != '') {
+        toList.add(email2);
+      }
+      if (to3 && email3 != '') {
+        toList.add(email3);
+      }
 
-    if (cc1 && email1 != '') {
-      ccList.add(email1);
+      if (cc1 && email1 != '') {
+        ccList.add(email1);
+      }
+      if (cc2 && email2 != '') {
+        ccList.add(email2);
+      }
+      if (cc3 && email3 != '') {
+        ccList.add(email3);
+      }
     }
-    if (cc2 && email2 != '') {
-      ccList.add(email2);
-    }
-    if (cc3 && email3 != '') {
-      ccList.add(email3);
-    }
-
     email.sendemail(to: toList, cc: ccList, subject: subject, body: msg);
   }
 }
