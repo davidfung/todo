@@ -73,6 +73,7 @@ class MyApp extends StatelessWidget {
           AboutPage.routeName: (context) => AboutPage(),
           SettingsPage.routeName: (context) => SettingsPage(),
         },
+        debugShowCheckedModeBanner: false,
       ),
     );
   }
