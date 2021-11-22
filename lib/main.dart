@@ -85,6 +85,13 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(APP_TITLE),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () {
+                Navigator.pushNamed(context, '/addtask');
+              })
+        ],
       ),
       drawer: MainDrawer(),
       body: TaskView(),
