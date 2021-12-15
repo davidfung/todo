@@ -22,7 +22,8 @@ class MainDrawer extends StatelessWidget {
                     padding: EdgeInsets.only(left: 20),
                     child: Text('Amazing Todo',
                         style: TextStyle(fontSize: 18, color: Colors.white))),
-                decoration: BoxDecoration(color: Theme.of(context).accentColor),
+                decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.secondary),
                 margin: EdgeInsets.all(0.0),
                 padding: EdgeInsets.all(0.0)),
           ),

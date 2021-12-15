@@ -1,0 +1,18 @@
+Amazing Todo - Change Log
+
+- Version: 1.13.0+13
+  - //INSERT DATE//
+  - Update packages and fixed breaking changes
+  
+- Version: 1.12.0+12
+  - November 21, 2021
+  - Add new task button in main app bar
+  
+- Version: 1.11.0+11
+  - March 26, 2021
+  - New setting: email subject prefix
+  - Add Paste & Email button in Add & Edit screens.
+  - Allow override of email recipients
+
+
+ 

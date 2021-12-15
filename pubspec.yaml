@@ -11,7 +11,7 @@ description: An amazing to do list.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.12.0+12
+version: 1.13.0+13
 
 environment:
   sdk: ">=2.3.0 <3.0.0"
@@ -19,14 +19,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^0.1.2
-  flutter_email_sender: ^2.2.2
-  package_info: ">=0.4.0+16 <2.0.0"
+  cupertino_icons: ^1.0.4
+  flutter_email_sender: ^5.0.2
+  package_info: ^2.0.2
   path: ^1.6.4
-  provider: ^5.0.0
-  shared_preferences: ^0.5.6+2
-  sqflite: ^1.2.0
-  url_launcher: ^5.4.2
+  provider: ^6.0.1
+  shared_preferences: ^2.0.10
+  sqflite: ^2.0.1
+  url_launcher: ^6.0.17
 
 dev_dependencies:
   flutter_test:

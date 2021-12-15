@@ -46,7 +46,7 @@ class EditTaskPage extends StatelessWidget {
                 _title = title;
               },
             ),
-            RaisedButton(
+            ElevatedButton(
               child: Text(_saveButtonName),
               onPressed: () {
                 if (_title != null) {

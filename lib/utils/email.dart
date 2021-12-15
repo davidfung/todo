@@ -6,7 +6,7 @@ Future<void> sendemail(
     String body,
     List<String> cc,
     List<String> bcc,
-    String attachmentPath,
+    List<String> attachmentPaths,
     bool isHTML}) async {
   final Email email = Email(
     recipients: to,
@@ -14,7 +14,7 @@ Future<void> sendemail(
     bcc: bcc,
     subject: subject,
     body: body,
-    attachmentPath: attachmentPath,
+    attachmentPaths: attachmentPaths,
     isHTML: false,
   );
   await FlutterEmailSender.send(email);
