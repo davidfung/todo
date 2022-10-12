@@ -22,3 +22,4 @@ const settingCc1 = 'cc1';
 const settingCc2 = 'cc2';
 const settingCc3 = 'cc3';
 const settingEmailPrefix = 'emailPrefix';
+const settingAppVersion = 'appVersion';
